@@ -1,7 +1,10 @@
-﻿namespace MARVEL2.Models.Helper
+﻿using MARVEL2.Controllers;
+
+namespace MARVEL2.Models.Helper
 {
     public static class Heroes
     {
+        
         public static List<Hero> GetAll()
         {
             return new List<Hero>
@@ -33,6 +36,11 @@
                 new Hero() { HeroName = "ShangChi"},
 
             };
+        }
+
+        internal static IEnumerable<object> GetIEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

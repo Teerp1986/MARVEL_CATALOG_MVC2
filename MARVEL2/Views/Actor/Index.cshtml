@@ -1,5 +1,5 @@
-﻿@using MARVEL2.Models.ViewModels;
-@using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿@using MARVEL2.Models;
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,6 +7,7 @@
 @model MARVEL2.Models.ViewModels.ActorViewModel
 
 <h1>Index</h1>
+
 <p>
     <a asp-action="Create">Create New</a>"
 </p>
@@ -18,13 +19,18 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Birthdate)
-            </th> 
-            
-            <th></th>
+            </th>
+            Select Hero Name
+            <select class="form-select" asp-items="Model.HeroesSelectList">
+            </select>
+            <th>
+            Select Movies
+            <select class="for-select" asp-items="Model.MoviesSelectList"></select>
+            </th>
         </tr>
     </thread>
     <tbody>
-        @foreach (var item in Models)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -32,13 +38,7 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Birthdate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HeroName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Movies)
-                </td>
+                </td>             
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

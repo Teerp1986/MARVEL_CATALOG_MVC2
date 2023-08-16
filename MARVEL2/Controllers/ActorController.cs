@@ -3,6 +3,7 @@ using MARVEL2.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
+
 namespace MARVEL2.Controllers
 {
     public class ActorController : Controller
@@ -12,10 +13,9 @@ namespace MARVEL2.Controllers
 
         private readonly ILogger<ActorController> _logger;
 
-        public ActorController(ILogger<ActorController> logger)
-        {
-            _logger = logger;
-        }
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        public ActorController(ILogger<ActorController> logger) => _logger = logger;
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
         // GET: ActorController
         public IActionResult Index()
@@ -30,6 +30,22 @@ namespace MARVEL2.Controllers
             foreach (var hero in heroesData)
             {
                 model.HeroesSelectList.Add(new SelectListItem { Text = hero.HeroName });
+            }
+
+
+            var moviesData = Models.Helper.Movies.GetAll();
+
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
+            var models = new ActorViewModel
+            {
+                MoviesSelectList = new List<SelectListItem>()
+            };
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
+            foreach (Movie movie in moviesData)
+            {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                model.MoviesSelectList.Add(new SelectListItem { Text = movie.Name });
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
 
             return View(model);

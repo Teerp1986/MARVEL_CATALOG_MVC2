@@ -1,4 +1,6 @@
-﻿﻿@{
+﻿﻿
+
+@{
     ViewData["Title"] = "Create";
 }
 
@@ -23,7 +25,12 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Select Hero Name</label>
-                <select class="form-select" asp-item="Model.HeroesSelectList">
+                <select class="form-select" asp-items="Model.HeroesSelectList">
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Select Movies</label>
+                <select class="form-select" asp-items="Model.MoviesSelectList">
                 </select>
             </div>
             <div class="form-group">
